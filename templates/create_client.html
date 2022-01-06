@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <form method="post" style="display: flex; flex-direction: column; width: 50%;">
+        <label for="number">Number</label>
+        <input type="text" name="number">
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name">
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name">
+        <input type="submit" value="Add client">
+    </form>
+{% endblock content %}

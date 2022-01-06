@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ data[0].first_name }} {{  data[0].last_name }}'s contracts</h1>
+<a href="/add_contract?user_id={{ data[0].id }}">New contract</a>
+    {% if not data[1] %}
+        <p>There's no contracts yet</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Client</th>
+                <th>Address</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Document</th>
+                <th>Sum</th>
+                <th></th>
+            </tr>
+        {% for item in data[1] %}
+            <tr>
+                <td>{{ item.client.first_name }} {{ item.client.last_name }}</td>
+                <td>{{ item.address.address }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.document }}</td>
+                <td>{{ item.sum }}</td>
+                <td>
+                    <form method="post" action="delete_contract?contract_id={{ item.id }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock content %}

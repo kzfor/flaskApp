@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ data[0].first_name }} {{  data[0].last_name }}'s addresses</h1>
+<a href="/add_address?user_id={{ data[0].id }}">New address</a>
+    {% if not data[1] %}
+        <p>There's no addresses yet</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Address</th>
+                <th></th>
+            </tr>
+        {% for item in data[1] %}
+            <tr>
+                <td>{{ item.address }}</td>
+                <td>
+                    <form method="post" action="delete_address?address_id={{ item.id }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock content %}

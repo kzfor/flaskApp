@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Clients</h1>
+<a href="/add_client">New client</a>
+    {% if not data %}
+        <p>There's no clients yet</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        {% for item in data %}
+            <tr>
+                <td>{{ item.phone }}</td>
+                <td>{{ item.first_name }}</td>
+                <td>{{ item.last_name}}</td>
+                <td><a href="/show_contracts?user_id={{ item.id }}">Show contracts</a></td>
+                <td><a href="/show_addresses?user_id={{ item.id }}">Show addresses</a></td>
+                <td>
+                    <form method="post" action="delete_client?user_id={{ item.id }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock content %}
